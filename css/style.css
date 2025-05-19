@@ -1,0 +1,172 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  transition: background 0.3s, color 0.3s;
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+  color: #111;
+}
+
+body[data-theme='dark'] {
+  background-color: #111;
+  color: #f5f5f5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.section {
+  padding: 80px 20px;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #d00000;
+  margin-bottom: 40px;
+}
+
+.red-text {
+  color: #d00000;
+}
+
+/* Navbar */
+.navbar {
+  padding: 10px 0;
+  background: #000;
+}
+
+.navbar .nav-link {
+  color: #fff;
+  margin-left: 15px;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+  color: #d00000;
+}
+
+#theme-toggle {
+  border: 1px solid #d00000;
+  color: #d00000;
+}
+
+#theme-toggle:hover {
+  background-color: #d00000;
+  color: #fff;
+}
+
+/* Hero */
+#hero {
+  height: 100vh;
+  background: linear-gradient(135deg, #000000, #d00000);
+  color: white;
+  padding: 0 20px;
+  text-align: center;
+}
+
+#hero h1 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+#hero h2 {
+  font-size: 1.5rem;
+  margin-top: 15px;
+}
+
+/* About */
+#about {
+  background-color: #f8f8f8;
+}
+
+body[data-theme='dark'] #about {
+  background-color: #1a1a1a;
+}
+
+/* Skills */
+#skills div {
+  font-size: 1.1rem;
+  padding: 10px;
+  background-color: #222;
+  margin: 8px;
+  border-radius: 8px;
+  color: white;
+  transition: transform 0.2s;
+}
+
+#skills div:hover {
+  transform: scale(1.05);
+  background-color: #d00000;
+  color: #fff;
+}
+
+/* Projects */
+.project-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 30px rgba(208, 0, 0, 0.2);
+}
+
+body[data-theme='dark'] .project-card {
+  background-color: #1b1b1b;
+  color: white;
+}
+
+/* Contact */
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 12px 15px;
+  border: 1px solid #d00000;
+  border-radius: 5px;
+  background-color: transparent;
+  color: inherit;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  border-color: #a00000;
+}
+
+/* Footer */
+footer {
+  background-color: #000;
+}
+
+footer .red-text:hover {
+  color: #ff4444;
+}
+
+/* Animations */
+[data-aos] {
+  transition: all 0.6s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 2.2rem;
+  }
+
+  #hero h2 {
+    font-size: 1.1rem;
+  }
+}

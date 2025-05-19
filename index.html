@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samarth Vamshy S | Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- AOS Scroll Animation -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Set theme early to avoid flash -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+    });
+  </script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+      <h2 class="red-text">A short Intro</h2>
+      <div>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <button id="theme-toggle">Toggle Theme</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="section">
+    <div data-aos="fade-up">
+      <h1>Hi, I'm <span class="red-text">Samarth Vamshy S</span></h1>
+      <h2><span id="typed"></span></h2>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p>
+        I am a passionate developer who loves building creative solutions using modern web technologies. I enjoy solving problems and crafting beautiful, functional websites.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <div>HTML</div>
+        <div>CSS</div>
+        <div>JavaScript</div>
+        <div>React</div>
+        <div>MongoDB</div>
+        <div>Java</div>
+        <div>Git</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div class="project-card">
+          <h3>Smart Waste Management App</h3>
+          <p>An Android app that tracks garbage disposal and uses AI to detect plastic waste for recycling.</p>
+        </div>
+        <div class="project-card">
+          <h3>AI Resume Builder</h3>
+          <p>A session-based React app that helps generate optimized resumes without storing data on a server.</p>
+        </div>
+        <!-- Add more project cards as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <form id="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" style="margin-top: 10px; padding: 10px 20px; background-color: #d00000; color: #fff; border: none; border-radius: 5px;">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="section" style="text-align: center; color: #888;">
+    <p>© 2025 <span class="red-text">Samarth Vamshy S</span>. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+
+  <footer>
+    <h2>Work on EmailJS still in progress</h2>
+  </footer>
+</body>
+</html>
