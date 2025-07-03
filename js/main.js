@@ -21,6 +21,11 @@ AOS.init({
   once: true,
 });
 
+const toggleButton = document.getElementById('theme-toggle');
+toggleButton.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
+
 // Contact form (optional enhancement: simple validation or alert)
 document.getElementById("contact-form").addEventListener("submit", function (e) {
   e.preventDefault();
