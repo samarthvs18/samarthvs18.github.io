@@ -678,7 +678,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
-      <a href="#hero" class="logo">Samarth's Notebook</a>
+      <a href="#hero" class="logo">Portfolio</a>
       <div class="nav-links">
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#skills">Skills</a>
@@ -705,7 +705,7 @@
       <div class="cta-buttons">
         <a href="#projects" class="btn btn-primary">
           <i class="fas fa-code"></i>
-          Take a look at My Work
+          View My Work
         </a>
         <a href="#contact" class="btn btn-secondary">
           <i class="fas fa-envelope"></i>
@@ -758,6 +758,7 @@
             <span class="skill-tag">JavaScript</span>
             <span class="skill-tag">React</span>
             <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Sass</span>
           </div>
         </div>
         <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
@@ -767,6 +768,8 @@
             <span class="skill-tag">Express.js</span>
             <span class="skill-tag">MongoDB</span>
             <span class="skill-tag">Java</span>
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">GraphQL</span>
           </div>
         </div>
         <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
@@ -776,6 +779,8 @@
             <span class="skill-tag">GitHub</span>
             <span class="skill-tag">VS Code</span>
             <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">AWS</span>
           </div>
         </div>
       </div>
@@ -826,10 +831,10 @@
             <i class="fas fa-shopping-cart"></i>
           </div>
           <div class="project-content">
-            <h3>Advanced E-Commerce Platform</h3>
-            <p>0
-              A full-stack e-commerce using AR(augmented reality) solution built with React and Node.js. Features user authentication, 
-              payment integration, inventory management, and admin dashboard. (STILL UNDER DEVELOPMENT
+            <h3>E-Commerce Platform</h3>
+            <p>
+              A full-stack e-commerce solution built with React and Node.js. Features user authentication, 
+              payment integration, inventory management, and admin dashboard.
             </p>
             <div class="project-links">
               <a href="#" class="btn-primary">Live Demo</a>
@@ -844,21 +849,21 @@
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="container">
-      <h2 class="section-title" data-aos="fade-up">Get In Touch With Me</h2>
+      <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
       <div class="contact-content">
         <div class="contact-info" data-aos="fade-right">
           <div class="contact-item">
             <i class="fas fa-envelope"></i>
             <div>
               <h4>Email</h4>
-              <p>samarthvamshysuresh@gmail.com</p>
+              <p>samarth.vamshy@example.com</p>
             </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-phone"></i>
             <div>
               <h4>Phone</h4>
-              <p>+91 7349791802</p>
+              <p>+91 12345 67890</p>
             </div>
           </div>
           <div class="contact-item">
@@ -917,7 +922,7 @@
       </div>
       <p>© 2025 <span class="red-text">Samarth Vamshy S</span>. All rights reserved.</p>
       <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
-        
+        Built with ❤️ using HTML, CSS & JavaScript
       </p>
     </div>
   </footer>
@@ -1018,8 +1023,16 @@
     // EmailJS Configuration and Contact Form
     (function() {
       // Initialize EmailJS with your public key
-      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+      // Replace "user_aBcDeFgHiJkLmNoP" with your actual EmailJS public key
+      emailjs.init("user_aBcDeFgHiJkLmNoP"); 
     })();
+
+    // EmailJS Configuration - Replace these with your actual values
+    const EMAILJS_CONFIG = {
+      serviceID: 'service_gmail123',     // Replace with your Service ID
+      templateID: 'template_contact456', // Replace with your Template ID
+      publicKey: 'user_aBcDeFgHiJkLmNoP' // Replace with your Public Key
+    };
 
     const contactForm = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
@@ -1027,6 +1040,12 @@
 
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      // Validate form before sending
+      if (!validateForm()) {
+        showMessage('Please fill in all required fields correctly.', 'error');
+        return;
+      }
       
       // Show loading state
       const originalContent = submitBtn.innerHTML;
@@ -1038,32 +1057,44 @@
       
       // Get form data
       const formData = {
-        from_name: document.getElementById('name').value,
-        from_email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value,
-        to_name: 'Samarth Vamshy S' // Your name
+        from_name: document.getElementById('name').value.trim(),
+        from_email: document.getElementById('email').value.trim(),
+        subject: document.getElementById('subject').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        to_name: 'Samarth Vamshy S', // Your name
+        reply_to: document.getElementById('email').value.trim()
       };
       
       // Send email using EmailJS
-      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+      emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, formData)
         .then(function(response) {
-          // Success
-          showMessage('Thank you! Your message has been sent successfully. I\'ll get back to you soon!', 'success');
+          console.log('Email sent successfully:', response);
+          showMessage('🎉 Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours!', 'success');
           contactForm.reset();
+          
+          // Optional: Send auto-reply to the sender
+          sendAutoReply(formData);
         })
         .catch(function(error) {
-          // Error - Fallback to mailto
           console.error('EmailJS Error:', error);
-          showMessage('There was an issue sending your message. Please try emailing me directly.', 'error');
+          
+          // More specific error messages
+          let errorMessage = 'There was an issue sending your message. ';
+          
+          if (error.status === 400) {
+            errorMessage += 'Please check your input and try again.';
+          } else if (error.status === 401) {
+            errorMessage += 'Service configuration error. Please try again later.';
+          } else if (error.status === 402) {
+            errorMessage += 'Service temporarily unavailable. Please try again later.';
+          } else {
+            errorMessage += 'Please try emailing me directly.';
+          }
+          
+          showMessage(errorMessage, 'error');
           
           // Create mailto link as fallback
-          const mailtoLink = `mailto:samarth.vamshy@example.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`From: ${formData.from_name} (${formData.from_email})\n\n${formData.message}`)}`;
-          
-          // Open default email client
-          setTimeout(() => {
-            window.location.href = mailtoLink;
-          }, 2000);
+          createMailtoFallback(formData);
         })
         .finally(function() {
           // Reset button state
@@ -1071,6 +1102,67 @@
           submitBtn.disabled = false;
         });
     });
+
+    // Optional: Auto-reply function
+    function sendAutoReply(originalData) {
+      const autoReplyData = {
+        to_email: originalData.from_email,
+        to_name: originalData.from_name,
+        from_name: 'Samarth Vamshy S',
+        subject_received: originalData.subject
+      };
+      
+      // Send auto-reply (you need to create a separate template for this)
+      emailjs.send(EMAILJS_CONFIG.serviceID, 'template_auto_reply', autoReplyData)
+        .then(function(response) {
+          console.log('Auto-reply sent successfully:', response);
+        })
+        .catch(function(error) {
+          console.log('Auto-reply failed (optional):', error);
+        });
+    }
+
+    // Create mailto fallback
+    function createMailtoFallback(formData) {
+      const mailtoLink = `mailto:samarth.vamshy@gmail.com?subject=${encodeURIComponent('Portfolio Contact: ' + formData.subject)}&body=${encodeURIComponent(`Hi Samarth,\n\nName: ${formData.from_name}\nEmail: ${formData.from_email}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}\n\n---\nSent from your portfolio website`)}`;
+      
+      // Show fallback option
+      setTimeout(() => {
+        const fallbackBtn = document.createElement('button');
+        fallbackBtn.innerHTML = '<i class="fas fa-envelope"></i> Open Email Client';
+        fallbackBtn.className = 'btn btn-secondary';
+        fallbackBtn.style.margin = '10px auto';
+        fallbackBtn.onclick = () => window.location.href = mailtoLink;
+        
+        messageContainer.appendChild(fallbackBtn);
+      }, 2000);
+    }
+
+    // Enhanced form validation
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      // Check required fields
+      if (!name || !email || !subject || !message) {
+        return false;
+      }
+      
+      // Validate email format
+      if (!isValidEmail(email)) {
+        return false;
+      }
+      
+      // Check minimum message length
+      if (message.length < 10) {
+        showMessage('Please enter a message with at least 10 characters.', 'error');
+        return false;
+      }
+      
+      return true;
+    }
 
     function showMessage(text, type) {
       const messageDiv = document.createElement('div');
