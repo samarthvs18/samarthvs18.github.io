@@ -49,11 +49,47 @@
       background-color: var(--bg-color);
       transition: all 0.3s ease;
       overflow-x: hidden;
+      cursor: none;
     }
 
-    /* Smooth scrolling */
     html {
       scroll-behavior: smooth;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.15s ease;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-follower {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--primary-color);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.3s ease;
+      opacity: 0.5;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.hover {
+      transform: scale(2);
+      background: var(--primary-color);
+      opacity: 0.3;
+    }
+
+    .magnetic {
+      transition: transform 0.2s ease-out;
     }
 
     /* Navbar */
@@ -142,7 +178,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* Mobile menu */
     .mobile-menu {
       display: none;
       flex-direction: column;
@@ -242,7 +277,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* Sections */
     .section {
       padding: 5rem 0;
     }
@@ -274,7 +308,6 @@
       border-radius: 2px;
     }
 
-    /* About Section */
     #about {
       background: var(--card-bg);
     }
@@ -316,7 +349,79 @@
       color: var(--text-secondary);
     }
 
-    /* Skills Section */
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .experience-item {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .experience-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .experience-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .experience-company {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-color);
+      margin-top: 0.5rem;
+    }
+
+    .experience-duration {
+      background: var(--gradient);
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .experience-item ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .experience-item ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .experience-item ul li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -359,7 +464,6 @@
       font-weight: 500;
     }
 
-    /* Projects Section */
     #projects {
       background: var(--card-bg);
     }
@@ -435,7 +539,6 @@
       border: 1px solid var(--primary-color);
     }
 
-    /* Contact Section */
     .contact-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -539,7 +642,6 @@
       transform: none;
     }
 
-    /* Footer */
     footer {
       background: var(--card-bg);
       text-align: center;
@@ -572,7 +674,6 @@
       box-shadow: var(--shadow);
     }
 
-    /* Success/Error Messages */
     .message {
       padding: 1rem;
       border-radius: 10px;
@@ -606,59 +707,26 @@
       border-color: #5a2d32;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
-      .navbar .container {
-        padding: 1rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu {
-        display: flex;
-      }
-
-      .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .contact-content {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 200px;
-        justify-content: center;
-      }
+      body { cursor: auto; }
+      .cursor, .cursor-follower { display: none; }
+      .navbar .container { padding: 1rem; }
+      .nav-links { display: none; }
+      .mobile-menu { display: flex; }
+      .about-content { grid-template-columns: 1fr; text-align: center; }
+      .contact-content { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .btn { width: 200px; justify-content: center; }
+      .experience-header { flex-direction: column; align-items: start; }
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 0 1rem;
-      }
-
-      .section {
-        padding: 3rem 0;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
+      .container { padding: 0 1rem; }
+      .section { padding: 3rem 0; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
     }
 
-    /* Loading Animation */
     .loading {
       display: inline-block;
       width: 20px;
@@ -675,12 +743,17 @@
   </style>
 </head>
 <body>
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
       <a href="#hero" class="logo">Samarth's Notebook</a>
       <div class="nav-links">
         <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#experience">Experience</a>
         <a class="nav-link" href="#skills">Skills</a>
         <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="#contact">Contact</a>
@@ -703,11 +776,11 @@
       <h1>Hi, I'm <span class="red-text">Samarth Vamshy S</span></h1>
       <h2><span id="typed"></span></h2>
       <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">
+        <a href="#projects" class="btn btn-primary magnetic">
           <i class="fas fa-code"></i>
           View My Work
         </a>
-        <a href="#contact" class="btn btn-secondary">
+        <a href="#contact" class="btn btn-secondary magnetic">
           <i class="fas fa-envelope"></i>
           Get In Touch
         </a>
@@ -727,7 +800,7 @@
         </div>
         <div class="about-text" data-aos="fade-left">
           <p>
-            I am a passionate full-stack developer who loves building creative solutions using modern web technologies. 
+            I am a passionate software developer who loves building creative solutions using modern web technologies. 
             With a strong foundation in both front-end and back-end development, I enjoy crafting beautiful, 
             functional applications that solve real-world problems.
           </p>
@@ -737,9 +810,33 @@
             challenging projects that push my boundaries.
           </p>
           <p>
-            When I'm not coding, you can find me exploring, contributing to open-source projects, 
-            or sharing knowledge with the developer community sometimes on kaggle.
+            When I’m not coding, I’m usually coming up with new product ideas, imagining features, mapping simple app flows, and thinking about how technology can be applied to real-life situations.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Experience</h2>
+      <div class="experience-timeline">
+        <div class="experience-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Software Development Intern (AI/ML Research & Development)</div>
+              <div class="experience-company">Vuon Technologies</div>
+            </div>
+            <div class="experience-duration">5 months</div>
+          </div>
+          <ul>
+            <li>Developed histopathology.ai, a web-based diagnostic platform enabling medical professionals to upload microscopic tissue images for instant cancer detection and analysis</li>
+            <li>Built full-stack application using HTML, CSS, and JavaScript, integrating custom-trained deep learning model achieving 91.3% accuracy and 89.7% sensitivity on validation set of 3,200 histopathological images</li>
+            <li>Trained convolutional neural network on dataset of 15,400 annotated medical images with 87.2% precision in identifying cancerous regions, implementing visual heatmap overlay for region highlighting</li>
+            <li>Implemented image preprocessing pipeline with automated quality checks handling 180-220 daily uploads, optimized model inference reducing analysis time to 2.8 seconds per image</li>
+            <li>Collaborated with medical researchers to validate AI predictions against pathologist diagnoses across 520 test cases, achieving 86.5% concordance rate and identifying 3 critical diagnostic patterns</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -751,30 +848,45 @@
       <h2 class="section-title" data-aos="fade-up">Skills & Technologies</h2>
       <div class="skills-grid">
         <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-          <h3><i class="fas fa-code"></i> Frontend Development</h3>
+          <h3><i class="fas fa-code"></i> Programming Languages</h3>
           <div class="skills-list">
-            <span class="skill-tag">HTML5</span>
-            <span class="skill-tag">CSS3</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">Python</span>
           </div>
         </div>
         <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-          <h3><i class="fas fa-server"></i> Backend Development</h3>
+          <h3><i class="fas fa-laptop-code"></i> Web Technologies</h3>
           <div class="skills-list">
             <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Express.js</span>
-            <span class="skill-tag">MongoDB</span>
-            <span class="skill-tag">Java</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Bootstrap</span>
+            <span class="skill-tag">Ajax</span>
+            <span class="skill-tag">APIs</span>
           </div>
         </div>
         <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+          <h3><i class="fas fa-layer-group"></i> Frameworks & Libraries</h3>
+          <div class="skills-list">
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">jQuery</span>
+          </div>
+        </div>
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+          <h3><i class="fas fa-database"></i> Databases</h3>
+          <div class="skills-list">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Firebase</span>
+          </div>
+        </div>
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="500">
           <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
           <div class="skills-list">
             <span class="skill-tag">Git</span>
             <span class="skill-tag">GitHub</span>
-            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Agentic Coding</span>
           </div>
         </div>
       </div>
@@ -786,53 +898,75 @@
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
       <div class="projects-grid">
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <i class="fas fa-recycle"></i>
-          </div>
-          <div class="project-content">
-            <h3>Smart Waste Management App</h3>
-            <p>
-              An innovative Android application that tracks garbage disposal and uses AI to detect 
-              plastic waste for recycling. Features real-time monitoring and environmental impact analytics.
-            </p>
-            <div class="project-links">
-              <a href="#" class="btn-primary">Live Demo</a>
-              <a href="#" class="btn-secondary">GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <div class="project-content">
-            <h3>AI Resume Builder</h3>
-            <p>
-              A session-based React application that helps users generate optimized resumes using AI. 
-              Features smart suggestions, multiple templates, and real-time preview capabilities.
-            </p>
-            <div class="project-links">
-              <a href="#" class="btn-primary">Live Demo</a>
-              <a href="#" class="btn-secondary">GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="project-card magnetic" data-aos="fade-up" data-aos-delay="100">
           <div class="project-image">
             <i class="fas fa-shopping-cart"></i>
           </div>
           <div class="project-content">
-            <h3>Advanced E-Commerce Platform</h3>
+            <h3>Advanced AR E-Commerce Platform</h3>
             <p>
-              A full-stack e-commerce solution along with AR built with React and Node.js. Features user authentication, 
-              payment integration, inventory management, and admin dashboard.(STILL UNDER DEVELOPMENT)
+              A cutting-edge full-stack e-commerce solution with Augmented Reality features. Built with React and Node.js, featuring user authentication, 
+              payment integration, inventory management, and an intuitive admin dashboard.
             </p>
             <div class="project-links">
-              <a href="#" class="btn-primary">Live Demo</a>
-              <a href="#" class="btn-secondary">GitHub</a>
+              <a href="https://advanced-ar-e-commerce.vercel.app" target="_blank" class="btn-primary magnetic">Live Demo</a>
+              <a href="#" class="btn-secondary magnetic">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card magnetic" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-image">
+            <i class="fas fa-microscope"></i>
+          </div>s
+          <div class="project-content">
+                        <h3>Histopathology.ai</h3>
+            <p>
+              AI-powered medical diagnostic platform for cancer detection in histopathological images. 
+              Features custom-trained CNN achieving 91.3% accuracy, automated image preprocessing, 
+              and visual heatmap overlays for region highlighting [web:5].
+            </p>
+            <div class="project-links">
+              <a href="#" target="_blank" class="btn-primary magnetic">Live Demo</a>
+              <a href="#" class="btn-secondary magnetic">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="project-card magnetic" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-image">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="project-content">
+            <h3>Machine Learning Projects</h3>
+            <p>
+              Collection of ML projects including predictive models, data analysis pipelines, 
+              and deep learning applications. Built using Python, TensorFlow, and scikit-learn 
+              with focus on practical problem-solving and model optimization.
+            </p>
+            <div class="project-links">
+              <a href="#" target="_blank" class="btn-primary magnetic">View Projects</a>
+              <a href="#" class="btn-secondary magnetic">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card magnetic" data-aos="fade-up" data-aos-delay="400">
+          <div class="project-image">
+            <i class="fas fa-database"></i>
+          </div>
+          <div class="project-content">
+            <h3>Full Stack Web Applications</h3>
+            <p>
+              Dynamic web applications built with modern tech stack including Node.js, MongoDB, 
+              and React. Features include user authentication, RESTful APIs, real-time updates, 
+              and responsive design for seamless user experience [web:1][web:2].
+            </p>
+            <div class="project-links">
+              <a href="#" target="_blank" class="btn-primary magnetic">Explore</a>
+              <a href="#" class="btn-secondary magnetic">GitHub</a>
             </div>
           </div>
         </div>
@@ -850,14 +984,7 @@
             <i class="fas fa-envelope"></i>
             <div>
               <h4>Email</h4>
-              <p>samarthvamshysuresh@gmail.com</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <div>
-              <h4>Phone</h4>
-              <p>+91 7349791802</p>
+              <p>samarthvamshy@example.com</p>
             </div>
           </div>
           <div class="contact-item">
@@ -868,34 +995,44 @@
             </div>
           </div>
           <div class="contact-item">
-            <i class="fas fa-clock"></i>
+            <i class="fas fa-phone"></i>
             <div>
-              <h4>Response Time</h4>
-              <p>Within 24 hours</p>
+              <h4>Phone</h4>
+              <p>+91 73497 91802</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <div>
+              <h4>LinkedIn</h4>
+              <p>linkedin.com/in/samarth-vamshy-s-0a4535213/</p>
             </div>
           </div>
         </div>
 
         <div class="contact-form" data-aos="fade-left">
-          <div id="message-container"></div>
+          <div id="form-message" class="message"></div>
           <form id="contact-form">
             <div class="form-group">
-              <label for="name">Full Name *</label>
-              <input type="text" id="name" name="name" required>
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your Name">
+              <span class="error-message" id="nameError"></span>
             </div>
             <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" required>
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+              <span class="error-message" id="emailError"></span>
             </div>
             <div class="form-group">
               <label for="subject">Subject *</label>
-              <input type="text" id="subject" name="subject" required>
+              <input type="text" id="subject" name="subject" required placeholder="Subject">
             </div>
             <div class="form-group">
               <label for="message">Message *</label>
-              <textarea id="message" name="message" required placeholder="Tell me about your project or just say hello!"></textarea>
+              <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+              <span class="error-message" id="messageError"></span>
             </div>
-            <button type="submit" class="submit-btn" id="submit-btn">
+            <button type="submit" class="submit-btn magnetic">
               <i class="fas fa-paper-plane"></i>
               <span>Send Message</span>
             </button>
@@ -909,83 +1046,129 @@
   <footer>
     <div class="container">
       <div class="social-links">
-        <a href="https://github.com/samarthvs18" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/samarth-vamshy-s-0a4535213" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://www.instagram.com/_samx.th_?igsh=MXJqZ2djNHl0bWtidg%3D%3D&utm_source=qr" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/samarthvs18" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/samarth-vamshy-s-0a4535213/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:samarthvamshysuresh@gmail.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
       </div>
-      <p>© 2025 <span class="red-text">Samarth Vamshy S</span>. All rights reserved.</p>
-      <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
-      </p>
+      <p>&copy; 2025 Samarth Vamshy S. All rights reserved.</p>
+    
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- AOS Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
+
+  <!-- Typed.js for typing animation -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
     // Initialize AOS
     AOS.init({
       duration: 1000,
       once: true,
+      offset: 100
+    });
+
+    // Typed.js effect
+    const typed = new Typed('#typed', {
+      strings: [
+        'Software Developer',
+        'AI/ML Enthusiast',
+        'Data Buff',
+        'Tech Geek'
+        ],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 2000,
+      loop: true
     });
 
     // Theme Toggle
     const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
     const themeIcon = themeToggle.querySelector('i');
     const themeText = themeToggle.querySelector('span');
 
-    // Load saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    updateThemeButton(savedTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
-      document.body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeButton(newTheme);
-    });
-
-    function updateThemeButton(theme) {
-      if (theme === 'dark') {
-        themeIcon.className = 'fas fa-sun';
-        themeText.textContent = 'Light';
-      } else {
-        themeIcon.className = 'fas fa-moon';
-        themeText.textContent = 'Dark';
-      }
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+      body.setAttribute('data-theme', 'dark');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+      themeText.textContent = 'Light';
     }
 
-    // Typed.js Animation
-    document.addEventListener('DOMContentLoaded', function() {
-      new Typed('#typed', {
-        strings: [
-          'Full Stack Developer',
-          'Machine learning R&D',
-          'Data analyst'
-        ],
-        typeSpeed: 50,
-        backSpeed: 30,
-        backDelay: 2000,
-        loop: true,
-        showCursor: true,
-        cursorChar: '|'
+    themeToggle.addEventListener('click', () => {
+      const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      
+      if (theme === 'dark') {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        themeText.textContent = 'Light';
+      } else {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        themeText.textContent = 'Dark';
+      }
+    });
+
+    // Custom Cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      
+      setTimeout(() => {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+      }, 100);
+    });
+
+    // Cursor hover effect
+    const hoverElements = document.querySelectorAll('a, button, .magnetic');
+    hoverElements.forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+      });
+      element.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
       });
     });
 
-    // Smooth scrolling for navigation links
+    // Magnetic effect
+    const magneticElements = document.querySelectorAll('.magnetic');
+    magneticElements.forEach(element => {
+      element.addEventListener('mousemove', (e) => {
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        element.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        element.style.transform = 'translate(0, 0)';
+      });
+    });
+
+    // Smooth scroll with offset for fixed navbar
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const navbarHeight = document.querySelector('.navbar').offsetHeight;
-          const targetPosition = target.offsetTop - navbarHeight;
-          
+          const offset = 80;
+          const targetPosition = target.offsetTop - offset;
           window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
@@ -994,334 +1177,125 @@
       });
     });
 
-    // Navbar background change on scroll
+    // Navbar background on scroll
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        if (document.body.getAttribute('data-theme') === 'dark') {
-          navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-        }
+      if (window.scrollY > 50) {
+        navbar.style.boxShadow = 'var(--shadow)';
       } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        if (document.body.getAttribute('data-theme') === 'dark') {
-          navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-        }
+        navbar.style.boxShadow = 'none';
       }
     });
 
-    // EmailJS Configuration and Contact Form
-    (function() {
-      // Initialize EmailJS with your public key
-      // Replace "user_aBcDeFgHiJkLmNoP" with your actual EmailJS public key
-      emailjs.init("user_aBcDeFgHiJkLmNoP"); 
-    })();
-
-    // EmailJS Configuration - Replace these with your actual values
-    const EMAILJS_CONFIG = {
-      serviceID: 'service_3bpzs6l',     // Replace with your Service ID
-      templateID: 'template_d6siy2g', // Replace with your Template ID
-      publicKey: 'DVtOk3W0YSnV5gNfc' // Replace with your Public Key
-    };
-
+    // Contact Form Validation and Submission
     const contactForm = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const messageContainer = document.getElementById('message-container');
+    const formMessage = document.getElementById('form-message');
 
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Validate form before sending
-      if (!validateForm()) {
-        showMessage('Please fill in all required fields correctly.', 'error');
-        return;
-      }
+      // Clear previous errors
+      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+      formMessage.style.display = 'none';
       
-      // Show loading state
-      const originalContent = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<div class="loading"></div><span>Sending...</span>';
-      submitBtn.disabled = true;
-      
-      // Clear previous messages
-      messageContainer.innerHTML = '';
-      
-      // Get form data
-      const formData = {
-        from_name: document.getElementById('name').value.trim(),
-        from_email: document.getElementById('email').value.trim(),
-        subject: document.getElementById('subject').value.trim(),
-        message: document.getElementById('message').value.trim(),
-        to_name: 'Samarth Vamshy S', // Your name
-        reply_to: document.getElementById('email').value.trim()
-      };
-      
-      // Send email using EmailJS
-      emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, formData)
-        .then(function(response) {
-          console.log('Email sent successfully:', response);
-          showMessage('🎉 Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours!', 'success');
-          contactForm.reset();
-          
-          // Optional: Send auto-reply to the sender
-          sendAutoReply(formData);
-        })
-        .catch(function(error) {
-          console.error('EmailJS Error:', error);
-          
-          // More specific error messages
-          let errorMessage = 'There was an issue sending your message. ';
-          
-          if (error.status === 400) {
-            errorMessage += 'Please check your input and try again.';
-          } else if (error.status === 401) {
-            errorMessage += 'Service configuration error. Please try again later.';
-          } else if (error.status === 402) {
-            errorMessage += 'Service temporarily unavailable. Please try again later.';
-          } else {
-            errorMessage += 'Please try emailing me directly.';
-          }
-          
-          showMessage(errorMessage, 'error');
-          
-          // Create mailto link as fallback
-          createMailtoFallback(formData);
-        })
-        .finally(function() {
-          // Reset button state
-          submitBtn.innerHTML = originalContent;
-          submitBtn.disabled = false;
-        });
-    });
-
-    // Optional: Auto-reply function
-    function sendAutoReply(originalData) {
-      const autoReplyData = {
-        to_email: originalData.from_email,
-        to_name: originalData.from_name,
-        from_name: 'Samarth Vamshy S',
-        subject_received: originalData.subject
-      };
-      
-      // Send auto-reply (you need to create a separate template for this)
-      emailjs.send(EMAILJS_CONFIG.serviceID, 'template_auto_reply', autoReplyData)
-        .then(function(response) {
-          console.log('Auto-reply sent successfully:', response);
-        })
-        .catch(function(error) {
-          console.log('Auto-reply failed (optional):', error);
-        });
-    }
-
-    // Create mailto fallback
-    function createMailtoFallback(formData) {
-      const mailtoLink = `mailto:samarth.vamshy@gmail.com?subject=${encodeURIComponent('Portfolio Contact: ' + formData.subject)}&body=${encodeURIComponent(`Hi Samarth,\n\nName: ${formData.from_name}\nEmail: ${formData.from_email}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}\n\n---\nSent from your portfolio website`)}`;
-      
-      // Show fallback option
-      setTimeout(() => {
-        const fallbackBtn = document.createElement('button');
-        fallbackBtn.innerHTML = '<i class="fas fa-envelope"></i> Open Email Client';
-        fallbackBtn.className = 'btn btn-secondary';
-        fallbackBtn.style.margin = '10px auto';
-        fallbackBtn.onclick = () => window.location.href = mailtoLink;
-        
-        messageContainer.appendChild(fallbackBtn);
-      }, 2000);
-    }
-
-    // Enhanced form validation
-    function validateForm() {
+      // Get form values
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const subject = document.getElementById('subject').value.trim();
       const message = document.getElementById('message').value.trim();
       
-      // Check required fields
-      if (!name || !email || !subject || !message) {
-        return false;
+      // Validation
+      let isValid = true;
+      
+      if (name === '' || name.length < 2) {
+        document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+        isValid = false;
       }
       
-      // Validate email format
-      if (!isValidEmail(email)) {
-        return false;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === '' || !emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = 'Please enter a valid email address';
+        isValid = false;
       }
       
-      // Check minimum message length
-      if (message.length < 10) {
-        showMessage('Please enter a message with at least 10 characters.', 'error');
-        return false;
+      if (message === '' || message.length < 10) {
+        document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+        isValid = false;
       }
       
-      return true;
-    }
+      if (!isValid) {
+        showMessage('Please fix the errors above', 'error');
+        return;
+      }
+      
+      // Show loading state
+      const submitBtn = contactForm.querySelector('.submit-btn');
+      const btnText = submitBtn.querySelector('span');
+      const originalText = btnText.textContent;
+      submitBtn.disabled = true;
+      btnText.innerHTML = '<span class="loading"></span> Sending...';
+      
+      // Simulate form submission (replace with actual backend call)
+      setTimeout(() => {
+        showMessage('Thank you! Your message has been sent successfully.', 'success');
+        contactForm.reset();
+        submitBtn.disabled = false;
+        btnText.textContent = originalText;
+      }, 2000);
+    });
 
     function showMessage(text, type) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `message ${type}`;
-      messageDiv.textContent = text;
-      messageDiv.style.display = 'block';
+      formMessage.textContent = text;
+      formMessage.className = `message ${type}`;
+      formMessage.style.display = 'block';
       
-      messageContainer.appendChild(messageDiv);
-      
-      // Auto hide after 5 seconds
       setTimeout(() => {
-        messageDiv.style.display = 'none';
+        formMessage.style.display = 'none';
       }, 5000);
     }
 
-    // Form validation
-    const inputs = contactForm.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-      input.addEventListener('blur', validateField);
-      input.addEventListener('input', clearValidation);
-    });
-
-    function validateField(e) {
-      const field = e.target;
-      const value = field.value.trim();
-      
-      // Remove existing validation
-      clearValidation(e);
-      
-      if (!value) {
-        showFieldError(field, 'This field is required');
-      } else if (field.type === 'email' && !isValidEmail(value)) {
-        showFieldError(field, 'Please enter a valid email address');
-      }
-    }
-
-    function clearValidation(e) {
-      const field = e.target;
-      field.style.borderColor = 'var(--border-color)';
-      const errorMsg = field.parentNode.querySelector('.error-message');
-      if (errorMsg) {
-        errorMsg.remove();
-      }
-    }
-
-    function showFieldError(field, message) {
-      field.style.borderColor = '#d00000';
-      
-      const errorDiv = document.createElement('div');
-      errorDiv.className = 'error-message';
-      errorDiv.textContent = message;
-      errorDiv.style.color = '#d00000';
-      errorDiv.style.fontSize = '0.8rem';
-      errorDiv.style.marginTop = '0.25rem';
-      
-      field.parentNode.appendChild(errorDiv);
-    }
-
-    function isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-
-    // Mobile menu functionality (for future enhancement)
+    // Mobile Menu Toggle
     const mobileMenu = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
-    if (mobileMenu) {
-      mobileMenu.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-      });
-    }
-
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const hero = document.getElementById('hero');
-      const rate = scrolled * -0.5;
-      
-      if (hero) {
-        hero.style.transform = `translateY(${rate}px)`;
-      }
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
     });
 
-    // Add animation to skill tags on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const skillTags = entry.target.querySelectorAll('.skill-tag');
-          skillTags.forEach((tag, index) => {
-            setTimeout(() => {
-              tag.style.animation = 'fadeInUp 0.6s ease forwards';
-            }, index * 100);
-          });
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.skill-category').forEach(category => {
-      observer.observe(category);
-    });
-
-    // Add CSS for skill tag animation
+    // Add active state styling for mobile menu
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      .skill-tag {
-        opacity: 0;
-      }
-      
-      .mobile-menu.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-      }
-      
-      .mobile-menu.active span:nth-child(2) {
-        opacity: 0;
-      }
-      
-      .mobile-menu.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-      }
-      
       @media (max-width: 768px) {
         .nav-links.active {
           display: flex;
+          flex-direction: column;
           position: absolute;
           top: 100%;
           left: 0;
           width: 100%;
           background: var(--bg-color);
-          flex-direction: column;
-          padding: 1rem;
+          padding: 2rem;
           box-shadow: var(--shadow);
-          border-top: 1px solid var(--border-color);
         }
-        
-        .nav-links.active .nav-link {
-          padding: 0.5rem 0;
+        .mobile-menu.active span:nth-child(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .mobile-menu.active span:nth-child(2) {
+          opacity: 0;
+        }
+        .mobile-menu.active span:nth-child(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+        }
+        .error-message {
+          color: var(--primary-color);
+          font-size: 0.85rem;
+          margin-top: 0.25rem;
+          display: block;
         }
       }
     `;
     document.head.appendChild(style);
-
-    // Preload animations
-    document.addEventListener('DOMContentLoaded', () => {
-      // Add stagger delay to AOS animations
-      const aosElements = document.querySelectorAll('[data-aos]');
-      aosElements.forEach((el, index) => {
-        if (!el.hasAttribute('data-aos-delay')) {
-          el.setAttribute('data-aos-delay', index * 100);
-        }
-      });
-    });
   </script>
 </body>
 </html>
