@@ -1,7 +1,10 @@
 // ==================== EMAILJS INITIALIZATION ====================
+console.log('Script loaded!');
+console.log('EmailJS exists?', typeof emailjs);
+
 (function() {
   emailjs.init({
-    publicKey: "DVtOk3W0YSnV5gNfc", // Replace with your actual EmailJS Public Key from dashboard
+    publicKey: "DVtOk3W0YSnV5gNfc", // ✅ Your Public Key is correct
   });
 })();
 
@@ -36,14 +39,12 @@ themeToggle.addEventListener('click', () => {
 // ==================== TYPED.JS INITIALIZATION ====================
 const typed = new Typed('#typed', {
   strings: [
-    'Full Stack Developer',
+    'Software Developer',
     'AI/ML Enthusiast',
-    'Problem Solver',
-    'Tech Innovator',
-    'Web Developer',
-    'Java Enthusiast',
-    'React Developer',
-    'Tech Explorer'
+    'Data Buff',
+    'Tech Geek',
+    'Full Stack Developer',
+    'Problem Solver'
   ],
   typeSpeed: 50,
   backSpeed: 30,
@@ -137,6 +138,8 @@ if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    console.log('Form submit triggered!'); // Debug log
+    
     // Clear previous errors
     const errorMessages = document.querySelectorAll('.error-message');
     if (errorMessages.length > 0) {
@@ -151,6 +154,8 @@ if (contactForm) {
     const email = document.getElementById('email').value.trim();
     const subject = document.getElementById('subject').value.trim();
     const message = document.getElementById('message').value.trim();
+    
+    console.log('Form data:', { name, email, subject, message }); // Debug log
     
     // Validation
     let isValid = true;
@@ -194,11 +199,13 @@ if (contactForm) {
     btnIcon.className = 'fas fa-spinner fa-spin';
     btnText.textContent = 'Sending...';
     
+    console.log('Attempting to send email...'); // Debug log
+    
     // Send email using EmailJS
     try {
       const response = await emailjs.sendForm(
-        'service_4oythfg',        // Your Service ID
-        'template_d6siy2g',       // Replace with your Template ID from EmailJS dashboard
+        'service_4oythfg',        // ✅ Your Service ID
+        'template_d6siy2g',       // ✅ Your Template ID
         contactForm
       );
       
@@ -208,7 +215,8 @@ if (contactForm) {
       
     } catch (error) {
       console.error('FAILED...', error);
-      showMessage('Oops! Something went wrong. Please try again or email me directly at samarthvamshy@example.com', 'error');
+      console.error('Error details:', error.text || error.message); // More detailed error
+      showMessage('Oops! Something went wrong. Please try again or email me directly at samarthvamshysuresh@gmail.com', 'error');
     } finally {
       // Reset button state
       submitBtn.disabled = false;
@@ -230,63 +238,6 @@ function showMessage(text, type) {
     }, 5000);
   }
 }
-
-// ==================== HARDWARE PROJECTS MODAL ====================
-function openHardwareModal() {
-  const modal = document.getElementById('hardwareModal');
-  if (modal) {
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function closeHardwareModal() {
-  const modal = document.getElementById('hardwareModal');
-  if (modal) {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    
-    // Close all accordions when modal closes
-    const accordions = document.querySelectorAll('.accordion-item');
-    accordions.forEach(item => {
-      item.classList.remove('active');
-    });
-  }
-}
-
-// Accordion Toggle Function
-function toggleAccordion(header) {
-  const accordionItem = header.parentElement;
-  const allItems = document.querySelectorAll('.accordion-item');
-  
-  // Close other accordions (optional - remove this loop if you want multiple open at once)
-  allItems.forEach(item => {
-    if (item !== accordionItem) {
-      item.classList.remove('active');
-    }
-  });
-  
-  // Toggle current accordion
-  accordionItem.classList.toggle('active');
-}
-
-// Close modal when clicking outside
-window.onclick = function(event) {
-  const modal = document.getElementById('hardwareModal');
-  if (modal && event.target == modal) {
-    closeHardwareModal();
-  }
-}
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    const modal = document.getElementById('hardwareModal');
-    if (modal && modal.style.display === 'block') {
-      closeHardwareModal();
-    }
-  }
-});
 
 // ==================== MOBILE MENU TOGGLE ====================
 const mobileMenu = document.querySelector('.mobile-menu');

@@ -56,7 +56,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Custom Cursor */
     .cursor {
       width: 20px;
       height: 20px;
@@ -92,7 +91,6 @@
       transition: transform 0.2s ease-out;
     }
 
-    /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
@@ -192,7 +190,6 @@
       transition: 0.3s;
     }
 
-    /* Hero Section */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -349,7 +346,6 @@
       color: var(--text-secondary);
     }
 
-    /* Experience Section */
     .experience-timeline {
       position: relative;
       padding: 2rem 0;
@@ -519,13 +515,18 @@
       gap: 1rem;
     }
 
-    .project-links a {
+    .project-links a, .project-links button {
       padding: 0.5rem 1rem;
       border-radius: 25px;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
       transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .project-links .btn-primary {
@@ -707,6 +708,13 @@
       border-color: #5a2d32;
     }
 
+    .error-message {
+      color: var(--primary-color);
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: block;
+    }
+
     @media (max-width: 768px) {
       body { cursor: auto; }
       .cursor, .cursor-follower { display: none; }
@@ -718,6 +726,27 @@
       .cta-buttons { flex-direction: column; align-items: center; }
       .btn { width: 200px; justify-content: center; }
       .experience-header { flex-direction: column; align-items: start; }
+      
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+      }
+      .mobile-menu.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      .mobile-menu.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .mobile-menu.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
     }
 
     @media (max-width: 480px) {
@@ -810,7 +839,7 @@
             challenging projects that push my boundaries.
           </p>
           <p>
-            When I’m not coding, I’m usually coming up with new product ideas, imagining features, mapping simple app flows, and thinking about how technology can be applied to real-life situations.
+            When I'm not coding, I'm usually coming up with new product ideas, imagining features, mapping simple app flows, and thinking about how technology can be applied to real-life situations.
           </p>
         </div>
       </div>
@@ -918,13 +947,13 @@
         <div class="project-card magnetic" data-aos="fade-up" data-aos-delay="200">
           <div class="project-image">
             <i class="fas fa-microscope"></i>
-          </div>s
+          </div>
           <div class="project-content">
-                        <h3>Histopathology.ai</h3>
+            <h3>Histopathology.ai</h3>
             <p>
               AI-powered medical diagnostic platform for cancer detection in histopathological images. 
               Features custom-trained CNN achieving 91.3% accuracy, automated image preprocessing, 
-              and visual heatmap overlays for region highlighting [web:5].
+              and visual heatmap overlays for region highlighting.
             </p>
             <div class="project-links">
               <a href="#" target="_blank" class="btn-primary magnetic">Live Demo</a>
@@ -932,8 +961,6 @@
             </div>
           </div>
         </div>
-
-        
 
         <div class="project-card magnetic" data-aos="fade-up" data-aos-delay="300">
           <div class="project-image">
@@ -962,7 +989,7 @@
             <p>
               Dynamic web applications built with modern tech stack including Node.js, MongoDB, 
               and React. Features include user authentication, RESTful APIs, real-time updates, 
-              and responsive design for seamless user experience [web:1][web:2].
+              and responsive design for seamless user experience.
             </p>
             <div class="project-links">
               <a href="#" target="_blank" class="btn-primary magnetic">Explore</a>
@@ -984,7 +1011,7 @@
             <i class="fas fa-envelope"></i>
             <div>
               <h4>Email</h4>
-              <p>samarthvamshy@example.com</p>
+              <p>samarthvamshysuresh@gmail.com</p>
             </div>
           </div>
           <div class="contact-item">
@@ -1015,12 +1042,12 @@
           <form id="contact-form">
             <div class="form-group">
               <label for="name">Name *</label>
-              <input type="text" id="name" name="name" required placeholder="Your Name">
+              <input type="text" id="name" name="from_name" required placeholder="Your Name">
               <span class="error-message" id="nameError"></span>
             </div>
             <div class="form-group">
               <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+              <input type="email" id="email" name="from_email" required placeholder="your.email@example.com">
               <span class="error-message" id="emailError"></span>
             </div>
             <div class="form-group">
@@ -1057,48 +1084,49 @@
         </a>
       </div>
       <p>&copy; 2025 Samarth Vamshy S. All rights reserved.</p>
-    
     </div>
   </footer>
 
-  <!-- AOS Animation Library -->
+  <!-- SCRIPTS - Load in correct order -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-  <!-- Typed.js for typing animation -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
-  <!-- EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    console.log('🔧 JS file started executing');
 
-  <script>
-    // Initialize AOS
+    (function() {
+      emailjs.init({
+        publicKey: "DVtOk3W0YSnV5gNfc",
+      });
+    })();
+
+    console.log('✅ Script loaded! EmailJS available:', typeof emailjs !== 'undefined');
+
     AOS.init({
       duration: 1000,
       once: true,
       offset: 100
     });
 
-    // Typed.js effect
     const typed = new Typed('#typed', {
       strings: [
         'Software Developer',
         'AI/ML Enthusiast',
         'Data Buff',
         'Tech Geek'
-        ],
+      ],
       typeSpeed: 50,
       backSpeed: 30,
       backDelay: 2000,
       loop: true
     });
 
-    // Theme Toggle
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     const themeIcon = themeToggle.querySelector('i');
     const themeText = themeToggle.querySelector('span');
 
-    // Check for saved theme preference
     const currentTheme = localStorage.getItem('theme') || 'light';
     if (currentTheme === 'dark') {
       body.setAttribute('data-theme', 'dark');
@@ -1120,48 +1148,40 @@
       }
     });
 
-    // Custom Cursor
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
 
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      
-      setTimeout(() => {
-        cursorFollower.style.left = e.clientX + 'px';
-        cursorFollower.style.top = e.clientY + 'px';
-      }, 100);
-    });
-
-    // Cursor hover effect
-    const hoverElements = document.querySelectorAll('a, button, .magnetic');
-    hoverElements.forEach(element => {
-      element.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
+    if (cursor && cursorFollower) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        setTimeout(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
       });
-      element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
-      });
-    });
 
-    // Magnetic effect
+      const hoverElements = document.querySelectorAll('a, button, .magnetic');
+      hoverElements.forEach(element => {
+        element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    }
+
     const magneticElements = document.querySelectorAll('.magnetic');
     magneticElements.forEach(element => {
       element.addEventListener('mousemove', (e) => {
         const rect = element.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        
         element.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
       });
-      
       element.addEventListener('mouseleave', () => {
         element.style.transform = 'translate(0, 0)';
       });
     });
 
-    // Smooth scroll with offset for fixed navbar
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1169,133 +1189,119 @@
         if (target) {
           const offset = 80;
           const targetPosition = target.offsetTop - offset;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
       });
     });
 
-    // Navbar background on scroll
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.style.boxShadow = 'var(--shadow)';
-      } else {
-        navbar.style.boxShadow = 'none';
+      if (navbar) {
+        navbar.style.boxShadow = window.scrollY > 50 ? 'var(--shadow)' : 'none';
       }
     });
 
-    // Contact Form Validation and Submission
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
 
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      // Clear previous errors
-      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
-      formMessage.style.display = 'none';
-      
-      // Get form values
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-      
-      // Validation
-      let isValid = true;
-      
-      if (name === '' || name.length < 2) {
-        document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
-        isValid = false;
-      }
-      
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email === '' || !emailPattern.test(email)) {
-        document.getElementById('emailError').textContent = 'Please enter a valid email address';
-        isValid = false;
-      }
-      
-      if (message === '' || message.length < 10) {
-        document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
-        isValid = false;
-      }
-      
-      if (!isValid) {
-        showMessage('Please fix the errors above', 'error');
-        return;
-      }
-      
-      // Show loading state
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      const btnText = submitBtn.querySelector('span');
-      const originalText = btnText.textContent;
-      submitBtn.disabled = true;
-      btnText.innerHTML = '<span class="loading"></span> Sending...';
-      
-      // Simulate form submission (replace with actual backend call)
-      setTimeout(() => {
-        showMessage('Thank you! Your message has been sent successfully.', 'success');
-        contactForm.reset();
-        submitBtn.disabled = false;
-        btnText.textContent = originalText;
-      }, 2000);
-    });
-
-    function showMessage(text, type) {
-      formMessage.textContent = text;
-      formMessage.className = `message ${type}`;
-      formMessage.style.display = 'block';
-      
-      setTimeout(() => {
-        formMessage.style.display = 'none';
-      }, 5000);
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        console.log('📧 Form submitted!');
+        
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        if (formMessage) formMessage.style.display = 'none';
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        console.log('📝 Form data:', { name, email, message });
+        
+        let isValid = true;
+        
+        if (name.length < 2) {
+          document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+          isValid = false;
+        }
+        
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          document.getElementById('emailError').textContent = 'Please enter a valid email';
+          isValid = false;
+        }
+        
+        if (message.length < 10) {
+          document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+          isValid = false;
+        }
+        
+        if (!isValid) {
+          showMessage('Please fix the errors above', 'error');
+          return;
+        }
+        
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const btnIcon = submitBtn.querySelector('i');
+        const btnText = submitBtn.querySelector('span');
+        const originalText = btnText.textContent;
+        submitBtn.disabled = true;
+        btnIcon.className = 'fas fa-spinner fa-spin';
+        btnText.textContent = 'Sending...';
+        
+        console.log('🚀 Attempting to send email...');
+        
+        try {
+          const response = await emailjs.sendForm(
+            'service_4oythfg',
+            'template_d6siy2g',
+            contactForm
+          );
+          
+          console.log('✅ SUCCESS!', response.status, response.text);
+          showMessage(`Thank you, ${name}! Your message has been sent successfully. I'll get back to you soon!`, 'success');
+          contactForm.reset();
+          
+        } catch (error) {
+          console.error('❌ FAILED...', error);
+          console.error('Error details:', error.text || error.message);
+          showMessage('Oops! Something went wrong. Please try again or email me directly at samarthvamshysuresh@gmail.com', 'error');
+        } finally {
+          submitBtn.disabled = false;
+          btnIcon.className = 'fas fa-paper-plane';
+          btnText.textContent = originalText;
+        }
+      });
     }
 
-    // Mobile Menu Toggle
+    function showMessage(text, type) {
+      if (formMessage) {
+        formMessage.textContent = text;
+        formMessage.className = `message ${type}`;
+        formMessage.style.display = 'block';
+        setTimeout(() => formMessage.style.display = 'none', 5000);
+      }
+    }
+
     const mobileMenu = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
-    mobileMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-    });
+    if (mobileMenu && navLinks) {
+      mobileMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
 
-    // Add active state styling for mobile menu
-    const style = document.createElement('style');
-    style.textContent = `
-      @media (max-width: 768px) {
-        .nav-links.active {
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          background: var(--bg-color);
-          padding: 2rem;
-          box-shadow: var(--shadow);
-        }
-        .mobile-menu.active span:nth-child(1) {
-          transform: rotate(-45deg) translate(-5px, 6px);
-        }
-        .mobile-menu.active span:nth-child(2) {
-          opacity: 0;
-        }
-        .mobile-menu.active span:nth-child(3) {
-          transform: rotate(45deg) translate(-5px, -6px);
-        }
-        .error-message {
-          color: var(--primary-color);
-          font-size: 0.85rem;
-          margin-top: 0.25rem;
-          display: block;
-        }
-      }
-    `;
-    document.head.appendChild(style);
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          mobileMenu.classList.remove('active');
+        });
+      });
+    }
+
+    console.log('%c👋 Welcome to Samarth\'s Portfolio!', 'color: #d00000; font-size: 20px; font-weight: bold;');
+    console.log('%c🔥 Portfolio loaded successfully!', 'color: #666; font-size: 14px;');
   </script>
 </body>
 </html>
