@@ -1,4 +1,6 @@
-/* Reset and base styles */
+/* =========================
+   RESET & BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -7,10 +9,10 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  transition: background 0.3s, color 0.3s;
-  scroll-behavior: smooth;
   background-color: #ffffff;
   color: #111;
+  scroll-behavior: smooth;
+  transition: background 0.3s, color 0.3s;
 }
 
 body[data-theme='dark'] {
@@ -37,7 +39,9 @@ a {
   color: #d00000;
 }
 
-/* Navbar */
+/* =========================
+   NAVBAR
+========================= */
 .navbar {
   padding: 10px 0;
   background: #000;
@@ -46,7 +50,7 @@ a {
 .navbar .nav-link {
   color: #fff;
   margin-left: 15px;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease;
 }
 
 .navbar .nav-link:hover {
@@ -63,13 +67,16 @@ a {
   color: #fff;
 }
 
-/* Hero */
+/* =========================
+   HERO
+========================= */
 #hero {
   height: 100vh;
   background: linear-gradient(135deg, #000000, #d00000);
   color: white;
+  display: flex;
+  align-items: center;
   padding: 0 20px;
-  text-align: center;
 }
 
 #hero h1 {
@@ -82,7 +89,58 @@ a {
   margin-top: 15px;
 }
 
-/* About */
+/* =========================
+   PROFILE PHOTO (FINAL CLEAN VERSION)
+========================= */
+.profile-photo-wrapper {
+  position: relative;
+  width: 360px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+.profile-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 24px;
+  transition: transform 0.6s ease;
+}
+
+/* Soft depth glow */
+.profile-photo-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 30px;
+  background: radial-gradient(
+    circle at center,
+    rgba(208, 0, 0, 0.35),
+    transparent 65%
+  );
+  z-index: -1;
+}
+
+/* Hover effect */
+.profile-photo-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 45px 90px rgba(208, 0, 0, 0.35);
+}
+
+.profile-photo-wrapper:hover .profile-photo {
+  transform: scale(1.04);
+}
+
+/* Dark mode refinement */
+body[data-theme='dark'] .profile-photo-wrapper {
+  box-shadow: 0 35px 85px rgba(0, 0, 0, 0.75);
+}
+
+/* =========================
+   ABOUT
+========================= */
 #about {
   background-color: #f8f8f8;
 }
@@ -91,7 +149,9 @@ body[data-theme='dark'] #about {
   background-color: #1a1a1a;
 }
 
-/* Skills */
+/* =========================
+   SKILLS
+========================= */
 #skills div {
   font-size: 1.1rem;
   padding: 10px;
@@ -99,16 +159,17 @@ body[data-theme='dark'] #about {
   margin: 8px;
   border-radius: 8px;
   color: white;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
 
 #skills div:hover {
   transform: scale(1.05);
   background-color: #d00000;
-  color: #fff;
 }
 
-/* Projects */
+/* =========================
+   PROJECTS
+========================= */
 .project-card {
   background-color: #fff;
   border-radius: 10px;
@@ -124,10 +185,11 @@ body[data-theme='dark'] #about {
 
 body[data-theme='dark'] .project-card {
   background-color: #1b1b1b;
-  color: white;
 }
 
-/* Contact */
+/* =========================
+   CONTACT
+========================= */
 #contact-form input,
 #contact-form textarea {
   width: 100%;
@@ -146,7 +208,9 @@ body[data-theme='dark'] .project-card {
   border-color: #a00000;
 }
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
 footer {
   background-color: #000;
 }
@@ -155,13 +219,15 @@ footer .red-text:hover {
   color: #ff4444;
 }
 
-/* Animations */
-[data-aos] {
-  transition: all 0.6s ease;
-}
-
-/* Responsive */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
+  #hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
   #hero h1 {
     font-size: 2.2rem;
   }
@@ -169,4 +235,52 @@ footer .red-text:hover {
   #hero h2 {
     font-size: 1.1rem;
   }
+
+  .profile-photo-wrapper {
+    width: 280px;
+    margin-bottom: 30px;
+  }
 }
+
+/* =========================
+   HERO IMAGE – CLEAN RESTART
+========================= */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image */
+.hero-image-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 22px;
+  transition: transform 0.6s ease;
+}
+
+/* Soft red ambient glow */
+.hero-image-frame::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 28px;
+  background: radial-gradient(
+    circle at center,
+    rgba(208, 0, 0, 0.35),
+    transparent 65%
+  );
+  z-index: -1;
+}
+
+/* Hover interaction */
+.hero-image-frame:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 45px 90px rgba(208, 0, 0, 0.4);
+}
+
+.hero-image-frame:hover img {
+  transform: scale(1.04);
+}
+
